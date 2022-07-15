@@ -1,0 +1,70 @@
+conky.config = {
+
+	background = true,
+	use_xft = true,
+	font = 'Source Code Pro:size=9',
+	xftalpha = 1,
+	update_interval = 1,
+	total_run_times = 0,
+	own_window = true,
+	own_window_transparent = false,
+	own_window_type = 'normal',
+	own_window_class = 'conky',
+	own_window_argb_visual = true,
+     	own_window_colour = '#000000',
+     	own_window_argb_value = 128,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	double_buffer = true,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = true,
+	stippled_borders = 0,
+	border_width = 10,
+	default_color = 'white',
+	default_shade_color = 'gray',
+	default_outline_color = 'black',
+	alignment = 'top_right',
+	gap_x = 50,
+	gap_y = 50,
+
+-- Misc Console #
+        out_to_console = false,
+        out_to_stderr = false,
+        extra_newline = false,
+
+	no_buffers = true,
+	cpu_avg_samples = 2,
+	override_utf8_locale = true,
+	uppercase = true,
+	minimum_width=300,
+};
+
+conky.text =
+[[
+${alignc} ${color grey} ${font xftfont monospace:size=14} Info $color $font
+
+kernel < $kernel >
+cpu type < ${execi 10000 cat /proc/cpuinfo|grep 'model name'|sed -e 's/model name.*: //'| uniq | cut -c 1-25} >
+gpu type < ${execi 10000 $HOME/.conky/Simple\ Conky/conky_scripts.sh 4} >
+
+$hr
+${alignc} ${color grey} ${font xftfont monospace:size=14} System $color $font
+
+${color grey}Uptime$color < $uptime_short >
+${color grey}RAM Usage$color < $mem/$memmax >
+${color grey}Swap Usage$color < $swap/$swapmax >
+${color grey}Processes$color < $processes > < $running_processes >
+
+${color grey}CPU Usage$color < $cpu% > < $freq mhz >
+${color grey}Cpu temperature$color < ${execi 1 $HOME/.conky/Simple\ Conky/conky_scripts.sh 1} >
+
+${color grey}gpu usage$color < ${execi 1 $HOME/.conky/Simple\ Conky/conky_scripts.sh 2} > < ${execi 1 $HOME/.conky/Simple\ Conky/conky_scripts.sh 6} >
+${color grey}gpu temperature$color < ${execi 1 $HOME/.conky/Simple\ Conky/conky_scripts.sh 5} >
+
+$hr
+${alignc} ${color grey} ${font xftfont monospace:size=14} Disk Usage $color $font
+
+/root < ${fs_used /}/${fs_size /} > ${fs_bar 6 /}
+/home < ${fs_used /home}/${fs_size /home} > ${fs_bar 6 /home}
+]]

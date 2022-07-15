@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BASEDIR=$(dirname "$0")
+echo "$BASEDIR"
+
+# Create temporary file with conky gpu mode
+"$BASEDIR"/conky_scripts.sh 3
+
+conky -c "$BASEDIR"/simple_status
+conky -c "$BASEDIR"/simple_todo
