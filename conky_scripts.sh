@@ -28,10 +28,12 @@ then
     fi
 elif [ $1 -eq 3 ]
 then
-    if [ "$( optimus-manager --print-mode | grep nvidia )" != '' ]
+    if [ "$( lspci | grep 'VGA.*NVIDIA' )" != '' ]
 	then # nvidia gpu is enabled
+        echo "a"
 		echo "1" > $TMPFILE
     else # nvidia gpu is disabled
+        echo "b"
         echo "0" > $TMPFILE
     fi
 elif [ $1 -eq 4 ]
