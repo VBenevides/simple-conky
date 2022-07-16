@@ -42,12 +42,12 @@ conky.config = {
 };
 
 -- Find and replace the following path with the location of todo.text
--- path = /mnt/Shared\ Partition/todo.txt
+-- path = /PATH/TO/todo.txt
 
 conky.text =
 [[
 ${alignc} ${color grey} ${font xftfont monospace:size=14} TODO $color $font
 $hr
 
-${exec if [ -s /mnt/Shared\ Partition/todo.txt ]; then cat /mnt/Shared\ Partition/todo.txt; else echo "Nothing"; fi}
+${exec if [ -s /PATH/TO/todo.txt ]; then cat /PATH/TO/todo.txt; else echo "Nothing"; fi}
 ]]
