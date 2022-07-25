@@ -6,11 +6,11 @@ Simple configuration for a TODO list and PC monitoring using conky.
 
 This is a basic script that works for NVIDIA GPUs, and it's compatible with nvidia-optimus. 
 
-The following programs are required: 
+The following packages are required: 
 
-- Conky
-- NVidia-SMI
-- sensors (lm-sensors)
+- conky
+- nvidia-smi
+- sensors
 
 ## Installation and Usage
 
