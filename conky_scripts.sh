@@ -28,45 +28,43 @@ then
     fi
 elif [ $1 -eq 3 ]
 then
-    if [ "$( lspci | grep 'VGA.*NVIDIA' )" != '' ]
-	then # nvidia gpu is enabled
-        echo "a"
-		echo "1" > $TMPFILE
+    if [ "$( lspci | grep 'Display\|3D\|VGA.*NVIDIA' )" != '' ]
+	  then # nvidia gpu is enabled
+		  echo "1" > $TMPFILE
     else # nvidia gpu is disabled
-        echo "b"
-        echo "0" > $TMPFILE
+      echo "0" > $TMPFILE
     fi
 elif [ $1 -eq 4 ]
 then
     if [ $(cat $TMPFILE) -eq 1 ]
-	then # nvidia gpu is enabled
-		nvidia-smi --query-gpu=name --format=csv | sed -n '2p'
+	  then # nvidia gpu is enabled
+		  nvidia-smi --query-gpu=name --format=csv | sed -n '2p'
     elif [ $(cat $TMPFILE) -eq 0 ] # nvidia gpu is disabled
     then
-        echo "Integrated GPU"
+      echo "Integrated GPU"
     else
-        ./conky_scripts.sh 3
+      ./conky_scripts.sh 3
     fi
 elif [ $1 -eq 5 ]
 then
     if [ $(cat $TMPFILE) -eq 1 ]
-	then # nvidia gpu is enabled
-		echo $(nvidia-smi --query-gpu=temperature.gpu --format=csv | sed -n '2p')°C
+	  then # nvidia gpu is enabled
+		  echo $(nvidia-smi --query-gpu=temperature.gpu --format=csv | sed -n '2p')°C
     elif [ $(cat $TMPFILE) -eq 0 ] # nvidia gpu is disabled
     then
-        echo "N/A"
+      echo "N/A"
     else
-        ./conky_scripts.sh 3
+      ./conky_scripts.sh 3
     fi
 elif [ $1 -eq 6 ]
 then
     if [ $(cat $TMPFILE) -eq 1 ]
-	then # nvidia gpu is enabled
-		nvidia-smi --query-gpu=clocks.gr --format=csv | sed -n '2p'
+	  then # nvidia gpu is enabled
+		  nvidia-smi --query-gpu=clocks.gr --format=csv | sed -n '2p'
     elif [ $(cat $TMPFILE) -eq 0 ] # nvidia gpu is disabled
     then
-        echo "N/A"
+      echo "N/A"
     else
-        ./conky_scripts.sh 3
+      ./conky_scripts.sh 3
     fi
 fi
