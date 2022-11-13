@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script has different options that are used to generate outputs for conky
-# ./conky_scripts.sh n
+# ~/.conky/Simple\ Conky/conky_scripts.sh n
 # n is a integer that corresponds to the following options:
 # 1 - Output max/mean/min temperatures for the CPU
 # 2 - Displays GPU usage if using NVIDIA GPU
@@ -24,7 +24,7 @@ then
     then
         echo "N/A"
     else
-        ./conky_scripts.sh 3
+        ~/.conky/Simple\ Conky/conky_scripts.sh 3
     fi
 elif [ $1 -eq 3 ]
 then
@@ -43,7 +43,7 @@ then
     then
       echo "Integrated GPU"
     else
-      ./conky_scripts.sh 3
+      ~/.conky/Simple\ Conky/conky_scripts.sh 3
     fi
 elif [ $1 -eq 5 ]
 then
@@ -54,7 +54,7 @@ then
     then
       echo "N/A"
     else
-      ./conky_scripts.sh 3
+      ~/.conky/Simple\ Conky/conky_scripts.sh 3
     fi
 elif [ $1 -eq 6 ]
 then
@@ -65,6 +65,6 @@ then
     then
       echo "N/A"
     else
-      ./conky_scripts.sh 3
+      ~/.conky/Simple\ Conky/conky_scripts.sh 3
     fi
 fi
